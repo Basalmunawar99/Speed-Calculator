@@ -1,23 +1,17 @@
-function calculateSpeed() {
-    const distance = parseFloat(document.getElementById("inp-distance").value);
-    const time = parseFloat(document.getElementById("input-time").value);
-    const resultElement = document.getElementById("result");
+function Calculate(distance,time){
+    var distance= parseFloat(document.getElementById("distance").value);
+    var time= parseFloat(document.getElementById("time").value);
+    var speed = distance / time ;
 
-    // Error checking
-    let errorMessage = "";
+    var message;
+            if (speed > 100) {
+                message = `Too Fast! Your speed is ${speed.toFixed(2)} km/hour. This is calculated by dividing the distance (${distance} km) by the time (${time} hours).`;
+            } else if (speed < 10) {
+                message = `Too Slow! Your speed is ${speed.toFixed(2)} km/hour. This is calculated by dividing the distance (${distance} km) by the time (${time} hours).`;
+            } else {
+                message = `Nice Speed! Your speed is ${speed.toFixed(2)} km/hour. This is calculated by dividing the distance (${distance} km) by the time (${time} hours).`;
+            }
 
-    if (isNaN(distance) || distance <= 0) {
-        errorMessage += "Please input a valid distance greater than zero. ";
-    }
-    if (isNaN(time) || time <= 0) {
-        errorMessage += "Please input a valid time greater than zero.";
-    }
-    if (errorMessage) {
-        resultElement.textContent = errorMessage;
-        return;
-    }
 
-    // Calculate speed
-    const speed = (distance / time).toFixed(2);
-    resultElement.textContent = `Dear User, Your Result is: ${speed} units/time`;
-}
+document.getElementById('result').innerHTML = message;     
+    }
